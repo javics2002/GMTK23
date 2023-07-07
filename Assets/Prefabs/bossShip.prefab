@@ -117,6 +117,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyShip4
       objectReference: {fileID: 0}
+    - target: {fileID: 6317578925029434746, guid: 7ef1433e60d8c9a40a7936f0b356d48c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 931e2e37bc15f9548b6c710edccc400c, type: 2}
+    - target: {fileID: 6829333093618665122, guid: 7ef1433e60d8c9a40a7936f0b356d48c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 931e2e37bc15f9548b6c710edccc400c, type: 2}
+    - target: {fileID: 7202271454713460447, guid: 7ef1433e60d8c9a40a7936f0b356d48c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 931e2e37bc15f9548b6c710edccc400c, type: 2}
+    - target: {fileID: 8100320773420232829, guid: 7ef1433e60d8c9a40a7936f0b356d48c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 931e2e37bc15f9548b6c710edccc400c, type: 2}
+    - target: {fileID: 8730303016566787287, guid: 7ef1433e60d8c9a40a7936f0b356d48c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 931e2e37bc15f9548b6c710edccc400c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ef1433e60d8c9a40a7936f0b356d48c, type: 3}
 --- !u!4 &159378353615806268 stripped
