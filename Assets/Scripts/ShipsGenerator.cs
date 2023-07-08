@@ -9,6 +9,7 @@ public class ShipsGenerator : MonoBehaviour
     public GameObject [] enemiesShips;
 
     public GameObject playerShip;
+    public GameObject shipsParent;
 
     public int colums;
     public int rows;
@@ -36,22 +37,23 @@ public class ShipsGenerator : MonoBehaviour
         patronEnemies[3] = 0;
         patronEnemies[4] = 0;
 
+        int total = 0;
         for (int i = 0; i < rows; i++){
 
             for(int j = 0; j < colums; j++)
             {
                 enemyShipPos = new Vector3(5 + j*10, 0, spaceHeight - 10 - i*10);
-                Instantiate(enemiesShips[patronEnemies[i]], enemyShipPos, Quaternion.identity);
-
+                GameObject go = Instantiate(enemiesShips[patronEnemies[i]], enemyShipPos, Quaternion.identity, shipsParent.transform);
+                go.GetComponent<EnemyShip>().time += total/10;
+                total++;
             }
         }
 
 
     }
 
-    // Update is called once per frame
-    void Update()
+    public GameObject[] getShips()
     {
-        
+        return enemiesShips;
     }
 }
