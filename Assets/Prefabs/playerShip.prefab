@@ -72,7 +72,7 @@ MonoBehaviour:
   speed: 20
   shootColdown: 0.5
   bulletSpeed: 50
-  bulletType: {fileID: 8644795417893230409, guid: 32bc49b058acf9c4ca51046e1baa3060, type: 3}
+  bulletType: {fileID: 8644795417893230409, guid: 787321929a055604492a99bafb0225e4, type: 3}
   offset: 0.02
   epsilon: 0.1
 --- !u!54 &6939003640120338930

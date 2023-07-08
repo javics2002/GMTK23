@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -2536107812314126673}
   - component: {fileID: 1237010612964576286}
   m_Layer: 0
-  m_Name: EnemyBullet
+  m_Name: PlayerBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bbe40c5ccb24e0748b12997e1f0a8762, type: 2}
+  - {fileID: 2100000, guid: 7f815ae8b3634174badc8d1104e0c330, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -146,5 +146,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53e7296618009af4cbe13a48d4d6d1bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedBullet: 15
-  isEnemyBullet: 1
+  speedBullet: -50
+  isEnemyBullet: 0

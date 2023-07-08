@@ -21,11 +21,10 @@ public class ShipsMovement : MonoBehaviour {
 
 	// Start is called before the first frame update
 	void Start() {
-		InvokeRepeating("Movement", 1f, 1f);
 		dir = direction.right;
 	}
 
-	private void Update() {
+	void Update() {
 		Movement();
 	}
 

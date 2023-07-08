@@ -8,6 +8,7 @@ public class EnemyShip : Ship
 	public float upSpeed = 5f;
 	public float time=1f;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,13 +21,24 @@ public class EnemyShip : Ship
         currentTime += Time.deltaTime;
     }
 
-    private void OnMouseDown()
+    private void OnMouseOver()
     {
-        if(currentTime > shootColdown)
+        if (Input.GetMouseButtonDown(0))
         {
-            bulletType.GetComponent<Bullet>().ChangeSpeed(bulletSpeed);
-            Instantiate(bulletType, transform.GetChild(1).position, Quaternion.identity);
-            currentTime= 0;
+            if (currentTime > shootColdown)
+            {
+                bulletType.GetComponent<Bullet>().ChangeSpeed(bulletSpeed);
+                Instantiate(bulletType, transform.GetChild(1).position, Quaternion.identity);
+                currentTime = 0;
+            }
+        }
+
+        if (Input.GetMouseButtonDown(1) && GetComponent<LoneAtack>() != null && GetComponent<LoneAtack>().isCharge())
+        {
+            GameObject.FindGameObjectWithTag("MainCamera").SetActive(false);
+            GetComponent<LoneAtack>().setCharge(false);            
+            GetComponent<LoneAtack>().setCameraActive(true);     
+            transform.parent= null;
         }
     }
 
