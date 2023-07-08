@@ -117,6 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 9115746978898333917}
+  maxAtackModeTime: 4
 --- !u!1 &3185707465152325089
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,21 +7,41 @@ public class LoneAtack : MonoBehaviour
 
     float timeToUnlock;
     float currentT;
+    float timeInAtackMode;
     bool charge;
+    bool atackMode;
+
+    Transform originalParent;
 
     public Camera camera;
+    public float maxAtackModeTime;
 
     // Start is called before the first frame update
     void Start()
     {
         timeToUnlock = Random.Range(5, 11);
         charge = false;
+        atackMode = false;
         currentT = 0;
+        timeInAtackMode = 0;
+        originalParent = transform.parent;
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if (atackMode)
+        {
+            timeInAtackMode+= Time.deltaTime;
+
+            if(timeInAtackMode >= maxAtackModeTime)
+            {
+                exitAtackMode();
+            }
+
+        }
+
         if (!charge)
         {
             currentT += Time.deltaTime;
@@ -35,19 +55,27 @@ public class LoneAtack : MonoBehaviour
 
     }
 
-    public bool isCharge()
+    private void OnMouseOver()
     {
-        return charge;
+        if (Input.GetMouseButtonDown(1) && charge && !atackMode)
+        {
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().enabled = false;
+            GetComponentInParent<ShipsMovement>().saveTransformOfShipAttacking(transform.position);
+            atackMode= true;
+            camera.gameObject.SetActive(true);
+            transform.parent = null;
+        }
     }
 
-    public void setCharge(bool charge_)
+    public void exitAtackMode()
     {
-        charge = charge_;
-    }
-
-    public void setCameraActive(bool active)
-    {
-        camera.gameObject.SetActive(active);
+        atackMode= false;
+        charge= false; 
+        timeInAtackMode = 0;
+        camera.gameObject.SetActive(false);
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().enabled = true;
+        transform.parent = originalParent;
+        transform.position = GetComponentInParent<ShipsMovement>().getSavedTransformOfShipAttacking();
     }
 
 }

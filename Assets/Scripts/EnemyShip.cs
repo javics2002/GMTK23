@@ -32,14 +32,6 @@ public class EnemyShip : Ship
                 currentTime = 0;
             }
         }
-
-        if (Input.GetMouseButtonDown(1) && GetComponent<LoneAtack>() != null && GetComponent<LoneAtack>().isCharge())
-        {
-            GameObject.FindGameObjectWithTag("MainCamera").SetActive(false);
-            GetComponent<LoneAtack>().setCharge(false);            
-            GetComponent<LoneAtack>().setCameraActive(true);     
-            transform.parent= null;
-        }
     }
 
     private void OnTriggerEnter(Collider collider)
