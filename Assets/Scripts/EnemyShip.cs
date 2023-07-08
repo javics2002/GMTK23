@@ -39,6 +39,11 @@ public class EnemyShip : Ship
             if (collider.gameObject.tag == "RigthBorder")
                 GetComponentInParent<ShipsMovement>().goUp(ShipsMovement.borderTouched.right);
         }
+
+        if (collider.GetComponent<Bullet>() != null && !collider.GetComponent<Bullet>().isEnemyBullet)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void left()
