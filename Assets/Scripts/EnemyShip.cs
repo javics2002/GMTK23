@@ -6,7 +6,8 @@ public class EnemyShip : Ship
 {
     float currentTime;
     public float bulletSpeed;
-    public float time=1f;
+	public float upSpeed = 5f;
+	public float time=1f;
 
     // Start is called before the first frame update
     void Start()
@@ -32,29 +33,27 @@ public class EnemyShip : Ship
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.tag == "LeftBorder" || collider.gameObject.tag == "RigthBorder")
+        if (collider.CompareTag("LeftBorder") || collider.CompareTag("RigthBorder"))
         {
-
-            //if (collider.gameObject.tag == "LeftBorder")
-            //    GetComponentInParent<ShipsMovement>().goUp(ShipsMovement.borderTouched.left);
-            //if (collider.gameObject.tag == "RigthBorder")
-            //    GetComponentInParent<ShipsMovement>().goUp(ShipsMovement.borderTouched.right);
-
+            if (collider.gameObject.tag == "LeftBorder")
+                GetComponentInParent<ShipsMovement>().goUp(ShipsMovement.borderTouched.left);
+            if (collider.gameObject.tag == "RigthBorder")
+                GetComponentInParent<ShipsMovement>().goUp(ShipsMovement.borderTouched.right);
         }
     }
 
     public void left()
     {
-        transform.Translate(Vector3.left);
+        transform.Translate(Vector3.left * speed * Time.deltaTime);
     }
 
     public void rigth()
     {
-        transform.Translate(Vector3.right);
+        transform.Translate(Vector3.right * speed * Time.deltaTime);
     }
 
     public void up()
     {
-        transform.Translate(Vector3.back);
+        transform.Translate(Vector3.back * upSpeed * Time.deltaTime);
     }
 }
