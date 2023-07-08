@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
-    public int lifes;
-    public float speed;
+	public float speed;
     public float shootColdown;
+	public float bulletSpeed;
 
     public GameObject bulletType;
 

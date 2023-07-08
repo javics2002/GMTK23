@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnemyShip : Ship
 {
     float currentTime;
-    public float bulletSpeed;
 	public float upSpeed = 5f;
 	public float time=1f;
 

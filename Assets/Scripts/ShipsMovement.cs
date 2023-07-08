@@ -5,7 +5,7 @@ using System.Threading;
 using UnityEngine;
 
 public class ShipsMovement : MonoBehaviour {
-	direction dir;
+	public direction dir;
 	public float upTime = .5f;
 	bool goingUp = false;
 
