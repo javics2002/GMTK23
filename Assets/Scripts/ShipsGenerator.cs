@@ -43,7 +43,8 @@ public class ShipsGenerator : MonoBehaviour
             for(int j = 0; j < colums; j++)
             {
                 enemyShipPos = new Vector3(5 + j*10, 0, spaceHeight - 10 - i*10);
-                GameObject go = Instantiate(enemiesShips[patronEnemies[i]], enemyShipPos, Quaternion.identity, shipsParent.transform);
+                GameObject go = Instantiate(enemiesShips[patronEnemies[i]], enemyShipPos, Quaternion.identity, shipsParent.transform.GetChild(i));
+                //time y total q son??
                 go.GetComponent<EnemyShip>().time += total/10;
                 total++;
             }

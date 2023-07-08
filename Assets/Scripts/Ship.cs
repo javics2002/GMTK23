@@ -10,9 +10,6 @@ public class Ship : MonoBehaviour
     public float shootColdown;
 
     public GameObject bulletType;
-    public GameObject ships;
-
-
 
     // Update is called once per frame
     void Update()
