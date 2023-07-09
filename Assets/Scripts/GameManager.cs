@@ -2,18 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Dan.Main;
-
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    bool invadersWin;
-    bool invadersLose;
-
-    public Text win;
-    public Text lose;
 
     public float timeToChangeScene;
 
@@ -36,26 +31,12 @@ public class GameManager : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-        invadersLose= false;
-        invadersWin= false;
-
 		username = Environment.UserName;
 	}
 
     // Update is called once per frame
     void Update()
     {
-        if (invadersLose)
-        {
-            lose.gameObject.SetActive(true);
-            Invoke("goMenu", timeToChangeScene);
-        }
-
-        if (invadersWin)
-        {
-            win.gameObject.SetActive(true);
-            Invoke("goMenu", timeToChangeScene);
-        }
     }
 
     private void goMenu()
@@ -65,13 +46,26 @@ public class GameManager : MonoBehaviour
 
     public void setInvadersWin()
     {
-        invadersWin = true;
-        SubmitScore();
+        GameObject obj = GameObject.FindGameObjectWithTag("UIWin");
+
+        if (obj != null)
+        {
+            obj.GetComponent<TextMeshProUGUI>().enabled = true;
+            Invoke("goMenu", timeToChangeScene);
+            //SubmitScore();
+        }
     }
 
     public void setInvadersLose()
     {
-        invadersLose = true;
+        GameObject obj = GameObject.FindGameObjectWithTag("UILose");
+
+        if (obj != null)
+        {
+            obj.GetComponent<TextMeshProUGUI>().enabled = true;
+            Invoke("goMenu", timeToChangeScene);
+
+        }
     }
 
     public static GameManager GetInstance() {
