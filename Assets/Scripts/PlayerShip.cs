@@ -14,12 +14,16 @@ public class PlayerShip : Ship
     public float epsilon = .5f;
     public GameObject points;
 
-	// Start is called before the first frame update
-	void Start()
+    AudioSource shootSound;
+
+    // Start is called before the first frame update
+    void Start()
     {
         FindTarget();
         currentTime = 0;
         shipsMovement = FindObjectOfType<ShipsMovement>();
+
+        shootSound = transform.GetChild(1).gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -59,6 +63,7 @@ public class PlayerShip : Ship
 			bulletType.GetComponent<Bullet>().isEnemyBullet = false;
 			Instantiate(bulletType, transform.GetChild(1).position, Quaternion.identity).transform.localScale = Vector3.one;
 			currentTime = 0;
+            shootSound.Play();
 			FindTarget();
 		}
 	}

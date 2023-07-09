@@ -9,17 +9,20 @@ public class EnemyShip : Ship
 	public float time=1f;
 
     ShipsMovement shipsMovement;
-    AudioSource audioSource;
     Animator animator;
+
+    AudioSource impactSound;
+    AudioSource shootSound;
 
 	void Start()
     {
         currentTime = shootColdown;
 		shipsMovement = GetComponentInParent<ShipsMovement>();
-        audioSource = GetComponent<AudioSource>();  
         animator = GetComponent<Animator>();
+        impactSound = gameObject.GetComponent<AudioSource>();
+        shootSound = transform.GetChild(1).gameObject.GetComponent<AudioSource>();
     }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -51,6 +54,8 @@ public class EnemyShip : Ship
 
         if (GameManager.GetInstance().playing && collider.GetComponent<Bullet>() != null && !collider.GetComponent<Bullet>().isEnemyBullet)
         {
+            impactSound.Play();
+
             if (transform.parent == null)
             {
                 GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().enabled = true;
@@ -81,6 +86,6 @@ public class EnemyShip : Ship
     {
         bulletType.GetComponent<Bullet>().ChangeSpeed(bulletSpeed);
         Instantiate(bulletType, transform.GetChild(1).position, transform.GetChild(1).rotation);
-        audioSource.Play();
+        shootSound.Play();
     }
 }

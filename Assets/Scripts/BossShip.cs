@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class BossShip : Ship
 {
+    AudioSource gameOverSound;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameOverSound= GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -21,6 +23,7 @@ public class BossShip : Ship
         if (GameManager.GetInstance().playing && collider.GetComponent<Bullet>() != null && !collider.GetComponent<Bullet>().isEnemyBullet)
         {
             GameManager.GetInstance().setInvadersLose();
+            gameOverSound.Play();
             Destroy(gameObject);
         }
     }
