@@ -10,8 +10,12 @@ public class ShipsMovement : MonoBehaviour {
 	public float upTime = .5f;
 	bool goingUp = false;
 
-	Vector3 shipAttacking;
+	Vector3 shipAttackingPos;
+	Quaternion shipAttackingRot;
 	bool anyShipAttacking;
+
+	float shipAttackingUpSpeed = 5;
+	float shipAttackingRLSpeed = 2;
 
 	public enum direction {
 		left,
@@ -33,6 +37,7 @@ public class ShipsMovement : MonoBehaviour {
 	}
 
 	void Movement() {
+
 		for (int i = 0; i < transform.childCount; i++) {
 			for (int j = 0; j < transform.GetChild(i).childCount; j++) {
 				if (goingUp) {
@@ -53,17 +58,17 @@ public class ShipsMovement : MonoBehaviour {
 		{
             if (goingUp)
             {
-				shipAttacking += (Vector3.back * 5 * Time.deltaTime);
+				shipAttackingPos += (Vector3.back * shipAttackingUpSpeed * Time.deltaTime);
             }
 
             else if (dir == direction.left)
             {
-                shipAttacking += (Vector3.left * 2 * Time.deltaTime);
+                shipAttackingPos += (Vector3.left * shipAttackingRLSpeed * Time.deltaTime);
             }
 
             else
             {
-                shipAttacking += (Vector3.right * 2 * Time.deltaTime);
+                shipAttackingPos += (Vector3.right * shipAttackingRLSpeed * Time.deltaTime);
             }
         }
 	}
@@ -86,14 +91,34 @@ public class ShipsMovement : MonoBehaviour {
 		goingUp = false;
 	}
 
-	public void saveTransformOfShipAttacking(Vector3 tr)
+	public void saveTransformOfShipAttacking(Vector3 tr, Quaternion rot)
 	{
-		anyShipAttacking= true;
-		shipAttacking = tr;
+		shipAttackingPos = tr;
+		shipAttackingRot= rot;
 	}
 
-	public Vector3 getSavedTransformOfShipAttacking()
+	public Vector3 getSavedPosOfShipAttacking()
 	{
-		return shipAttacking;
+		return shipAttackingPos;
+	}
+
+	public Quaternion getSavedRotOfShipAttacking()
+	{
+		return shipAttackingRot;
+	}
+
+	public void shipEnterInAtackMode()
+	{
+        anyShipAttacking = true;
+    }
+
+    public void shipExitAtackMode()
+    {
+        anyShipAttacking = false;
+    }
+
+    public bool isAnyShipAttacking()
+	{
+		return anyShipAttacking;
 	}
 }

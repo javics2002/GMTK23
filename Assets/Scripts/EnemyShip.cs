@@ -23,12 +23,12 @@ public class EnemyShip : Ship
 
     private void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && GetComponentInParent<ShipsMovement>() != null 
+            && !GetComponentInParent<ShipsMovement>().isAnyShipAttacking())
         {
             if (currentTime > shootColdown)
             {
-                bulletType.GetComponent<Bullet>().ChangeSpeed(bulletSpeed);
-                Instantiate(bulletType, transform.GetChild(1).position, Quaternion.identity);
+                shoot();
                 currentTime = 0;
             }
         }
@@ -46,6 +46,10 @@ public class EnemyShip : Ship
 
         if (collider.GetComponent<Bullet>() != null && !collider.GetComponent<Bullet>().isEnemyBullet)
         {
+            if (transform.parent == null)
+            {
+                GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().enabled = true;
+            }
             Destroy(gameObject);
         }
     }
@@ -63,5 +67,11 @@ public class EnemyShip : Ship
     public void up()
     {
         transform.Translate(Vector3.back * upSpeed * Time.deltaTime);
+    }
+
+    public void shoot()
+    {
+        bulletType.GetComponent<Bullet>().ChangeSpeed(bulletSpeed);
+        Instantiate(bulletType, transform.GetChild(1).position, transform.GetChild(1).rotation);
     }
 }

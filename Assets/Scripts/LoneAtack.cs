@@ -6,15 +6,24 @@ public class LoneAtack : MonoBehaviour
 {
 
     float timeToUnlock;
-    float currentT;
+    float watingUnlock;
+    float waitingShoot;
     float timeInAtackMode;
     bool charge;
     bool atackMode;
+    bool raise;
+    bool push;
 
     Transform originalParent;
 
     public Camera camera;
     public float maxAtackModeTime;
+    public float cameraSpeed;
+    public float shootColdown;
+    public float raiseSpeed;
+    public float raiseTime;
+    public float speed;
+    public float timeToResetShip;
 
     Material material;
 
@@ -22,11 +31,17 @@ public class LoneAtack : MonoBehaviour
     void Start()
     {
         timeToUnlock = Random.Range(5.0f, 11.0f);
+        originalParent = transform.parent;
+
         charge = false;
         atackMode = false;
-        currentT = 0;
+        push = false;
+        raise = false;
+        
+        watingUnlock = 0;
+        waitingShoot = 0;
         timeInAtackMode = 0;
-        originalParent = transform.parent;
+
         material = GetComponentInChildren<MeshRenderer>().material;
     }
 
@@ -37,22 +52,42 @@ public class LoneAtack : MonoBehaviour
         if (atackMode)
         {
             timeInAtackMode+= Time.deltaTime;
+            waitingShoot+= Time.deltaTime;
 
             if(timeInAtackMode >= maxAtackModeTime)
             {
+                timeInAtackMode = 0;
                 exitAtackMode();
             }
+
+            float mouseX = Input.GetAxis("Mouse X");
+            float mouseY = Input.GetAxis("Mouse Y");
+
+            transform.Rotate(Vector3.up, mouseX * cameraSpeed * Time.deltaTime);
+            transform.Rotate(Vector3.right, mouseY * cameraSpeed * Time.deltaTime);
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (waitingShoot > shootColdown)
+                {
+                    GetComponent<EnemyShip>().shoot();
+                    waitingShoot = 0;
+                }
+            }
+            
+            if(raise) transform.Translate(Vector3.up * raiseSpeed * Time.deltaTime);
+            if(push) transform.Translate(Vector3.back * speed * Time.deltaTime);
 
         }
 
         if (!charge)
         {
-            currentT += Time.deltaTime;
+            watingUnlock += Time.deltaTime;
 
-            if (currentT >= timeToUnlock)
+            if (watingUnlock >= timeToUnlock)
             {
                 charge = true;
-                currentT = 0;
+                watingUnlock = 0;
             }
         }
 
@@ -61,11 +96,18 @@ public class LoneAtack : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(1) && charge && !atackMode)
+        if (Input.GetMouseButtonDown(1) && charge && !atackMode && GetComponentInParent<ShipsMovement>() != null
+            && !GetComponentInParent<ShipsMovement>().isAnyShipAttacking())
         {
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().enabled = false;
-            GetComponentInParent<ShipsMovement>().saveTransformOfShipAttacking(transform.position);
-            atackMode= true;
+            GetComponentInParent<ShipsMovement>().saveTransformOfShipAttacking(transform.position, transform.rotation);
+            GetComponentInParent<ShipsMovement>().shipEnterInAtackMode();
+
+            atackMode = true;
+            raise = true;
+
+            Invoke("StopRaise", raiseTime);
+
             camera.gameObject.SetActive(true);
             transform.parent = null;
         }
@@ -74,12 +116,30 @@ public class LoneAtack : MonoBehaviour
     public void exitAtackMode()
     {
         atackMode= false;
-        charge= false; 
-        timeInAtackMode = 0;
+        charge= false;
+        push = false;
+
         camera.gameObject.SetActive(false);
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().enabled = true;
+
+        gameObject.SetActive(false);
+
+        Invoke("ResetShipInArmy", timeToResetShip);
+    }
+
+    void ResetShipInArmy()
+    {
+        gameObject.SetActive(true);
         transform.parent = originalParent;
-        transform.position = GetComponentInParent<ShipsMovement>().getSavedTransformOfShipAttacking();
+        GetComponentInParent<ShipsMovement>().shipExitAtackMode();
+        transform.position = GetComponentInParent<ShipsMovement>().getSavedPosOfShipAttacking();
+        transform.rotation = GetComponentInParent<ShipsMovement>().getSavedRotOfShipAttacking();
+    }
+
+    void StopRaise()
+    {
+        raise = false;
+        push = true;
     }
 
 }

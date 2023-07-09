@@ -117,7 +117,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 9115746978898333917}
-  maxAtackModeTime: 4
+  maxAtackModeTime: 8
+  cameraSpeed: 100
+  shootColdown: 1
+  raiseSpeed: 5
+  raiseTime: 2
+  speed: 15
+  timeToResetShip: 1
 --- !u!1 &3185707465152325089
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,6 +22,12 @@ public class PlayerShip : Ship
     // Update is called once per frame
     void Update()
     {
+
+        if (!target)
+        {
+            FindTarget();
+        }
+
         if (transform.position.x - epsilon > target.transform.position.x +
             (shipsMovement.dir == ShipsMovement.direction.right ? target.speed : -target.speed) * offset
 			* Mathf.Abs(transform.position.z - target.transform.position.z))
