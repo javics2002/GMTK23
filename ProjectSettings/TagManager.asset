@@ -7,6 +7,9 @@ TagManager:
   - DeadZone
   - RigthBorder
   - LeftBorder
+  - Enemy
+  - UIWin
+  - UILose
   layers:
   - Default
   - TransparentFX

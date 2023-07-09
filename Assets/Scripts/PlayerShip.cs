@@ -64,4 +64,12 @@ public class PlayerShip : Ship
         if(target)
             Gizmos.DrawSphere(target.transform.position, 5);
 	}
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.GetComponent<Bullet>() != null && collider.GetComponent<Bullet>().isEnemyBullet)
+        {
+            Destroy(gameObject);
+        }
+    }
 }

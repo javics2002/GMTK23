@@ -20,6 +20,7 @@ public class BossShip : MonoBehaviour
     {
         if (collider.GetComponent<Bullet>() != null && !collider.GetComponent<Bullet>().isEnemyBullet)
         {
+            
             Destroy(gameObject);
         }
     }
