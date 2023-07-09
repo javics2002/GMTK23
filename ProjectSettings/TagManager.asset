@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - UIWin
   - UILose
+  - UIScore
   layers:
   - Default
   - TransparentFX

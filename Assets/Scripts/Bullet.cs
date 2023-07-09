@@ -28,7 +28,7 @@ public class Bullet : MonoBehaviour
     {
         if((isEnemyBullet && collider.gameObject.GetComponent<PlayerShip>() != null) || 
            (!isEnemyBullet && collider.gameObject.GetComponent<EnemyShip>() != null) ||
-           collider.gameObject.CompareTag("DeadZone")) 
+           collider.gameObject.CompareTag("DeadZone"))
             Destroy(gameObject);
     }
 }

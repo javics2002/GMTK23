@@ -26,7 +26,7 @@ public class Leaderboard : MonoBehaviour
             }
         });
 
-		playerName.SetTextWithoutNotify(Environment.UserName);
+		playerName.SetTextWithoutNotify(GameManager.GetInstance().username);
 	}
 
 	public void UpdateName() {
