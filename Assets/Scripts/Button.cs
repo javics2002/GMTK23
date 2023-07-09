@@ -57,7 +57,7 @@ public class Button : MonoBehaviour
 	}
 
 	public void LeaderBoard() {
-
+		Camera.main.GetComponent<Animator>().SetBool("Leaderboard", true);
 	}
 
 	public void Quit() {
