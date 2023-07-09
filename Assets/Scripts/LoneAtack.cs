@@ -56,7 +56,7 @@ public class LoneAtack : MonoBehaviour
             timeInAtackMode+= Time.deltaTime;
             waitingShoot+= Time.deltaTime;
 
-            if(timeInAtackMode >= maxAtackModeTime)
+            if(timeInAtackMode >= maxAtackModeTime || !GameManager.GetInstance().playing)
             {
                 timeInAtackMode = 0;
                 exitAtackMode();

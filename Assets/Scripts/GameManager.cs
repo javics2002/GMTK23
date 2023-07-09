@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
 
     public bool playing = false;
 
+    public GameObject points;
+
     static GameManager instance;
 
 	string publicLeaderboardKey = "4f94383e7156f195db0b86d45e9b185084cbc46e46f58ca440c04a73c3093007";
@@ -53,6 +55,8 @@ public class GameManager : MonoBehaviour
         if (obj != null)
         {
             obj.GetComponent<TextMeshProUGUI>().enabled = true;
+
+            playing = false;
             
             StartCoroutine(GetPoints());
 			
@@ -64,7 +68,16 @@ public class GameManager : MonoBehaviour
 		var enemyShips = GameObject.FindGameObjectsWithTag("Enemy");
 
 		foreach (var enemy in enemyShips) {
-			IncreaseScore(enemy.GetComponent<Ship>().score);
+            if(!enemy)
+                continue;
+            Ship ship = enemy.GetComponent<Ship>();
+            if(!ship)
+                continue;
+
+            int score = ship.score;
+			IncreaseScore(score);
+            Instantiate(points, enemy.transform.position, Quaternion.identity)
+                .GetComponentInChildren<TextMeshPro>().text = score.ToString();
             yield return new WaitForSeconds(0.05f);
         }
 
@@ -79,6 +92,8 @@ public class GameManager : MonoBehaviour
         {
             obj.GetComponent<TextMeshProUGUI>().enabled = true;
             Invoke("goMenu", timeToChangeScene);
+
+			playing = false;
 
 			SubmitScore();
 			score = 0;

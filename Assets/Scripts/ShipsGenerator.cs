@@ -59,8 +59,6 @@ public class ShipsGenerator : MonoBehaviour
 			}
 		}
 
-		
-
 		GameManager.GetInstance().playing = true;
 	}
 

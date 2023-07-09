@@ -311,7 +311,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 26f5bb0ebe6f42148b630b6a3272c244, type: 2}
     - target: {fileID: 919132149155446097, guid: 5a08e15a4a71a9b4aac672259cd28309, type: 3}
       propertyPath: m_Name
-      value: EnemyShip1
+      value: EnemyShip2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

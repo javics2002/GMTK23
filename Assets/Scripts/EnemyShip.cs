@@ -10,12 +10,14 @@ public class EnemyShip : Ship
 
     ShipsMovement shipsMovement;
     AudioSource audioSource;
+    Animator animator;
 
 	void Start()
     {
         currentTime = shootColdown;
 		shipsMovement = GetComponentInParent<ShipsMovement>();
         audioSource = GetComponent<AudioSource>();  
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -47,14 +49,16 @@ public class EnemyShip : Ship
                 shipsMovement.goUp(ShipsMovement.borderTouched.right);
         }
 
-        if (collider.GetComponent<Bullet>() != null && !collider.GetComponent<Bullet>().isEnemyBullet)
+        if (GameManager.GetInstance().playing && collider.GetComponent<Bullet>() != null && !collider.GetComponent<Bullet>().isEnemyBullet)
         {
             if (transform.parent == null)
             {
                 GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().enabled = true;
                 shipsMovement.shipExitAtackMode();
 			}
-            Destroy(gameObject);
+
+			animator.SetBool("visible", false);
+            Destroy(gameObject, .5f);
         }
     }
 

@@ -1136,6 +1136,9 @@ MonoBehaviour:
   timeToChangeScene: 3
   username: 
   score: 0
+  round: 0
+  playing: 0
+  points: {fileID: 9057913036958530205, guid: 564638a85b90600469584305e8541166, type: 3}
 --- !u!4 &1012367670
 Transform:
   m_ObjectHideFlags: 0

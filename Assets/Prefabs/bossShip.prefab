@@ -70,7 +70,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 5000
-  speed: 2
+  speed: 0
   shootColdown: 1
   bulletSpeed: 3
   bulletType: {fileID: 8644795417893230409, guid: 32bc49b058acf9c4ca51046e1baa3060, type: 3}

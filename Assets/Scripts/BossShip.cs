@@ -18,7 +18,7 @@ public class BossShip : Ship
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.GetComponent<Bullet>() != null && !collider.GetComponent<Bullet>().isEnemyBullet)
+        if (GameManager.GetInstance().playing && collider.GetComponent<Bullet>() != null && !collider.GetComponent<Bullet>().isEnemyBullet)
         {
             GameManager.GetInstance().setInvadersLose();
             Destroy(gameObject);

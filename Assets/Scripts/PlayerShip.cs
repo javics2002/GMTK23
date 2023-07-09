@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -10,6 +12,7 @@ public class PlayerShip : Ship
     ShipsMovement shipsMovement;
     public float offset;
     public float epsilon = .5f;
+    public GameObject points;
 
 	// Start is called before the first frame update
 	void Start()
@@ -54,7 +57,7 @@ public class PlayerShip : Ship
 		if (currentTime > shootColdown) {
 			bulletType.GetComponent<Bullet>().ChangeSpeed(-bulletSpeed);
 			bulletType.GetComponent<Bullet>().isEnemyBullet = false;
-			Instantiate(bulletType, transform.GetChild(1).position, Quaternion.identity);
+			Instantiate(bulletType, transform.GetChild(1).position, Quaternion.identity).transform.localScale = Vector3.one;
 			currentTime = 0;
 			FindTarget();
 		}
@@ -69,9 +72,11 @@ public class PlayerShip : Ship
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.GetComponent<Bullet>() != null && collider.GetComponent<Bullet>().isEnemyBullet)
+        if (GameManager.GetInstance().playing && collider.GetComponent<Bullet>() != null && collider.GetComponent<Bullet>().isEnemyBullet)
         {
-            GameManager.GetInstance().setInvadersWin();
+			Instantiate(points, transform.position, Quaternion.identity)
+				.GetComponentInChildren<TextMeshPro>().text = score.ToString();
+			GameManager.GetInstance().setInvadersWin();
             GameManager.GetInstance().IncreaseScore(score);
             Destroy(gameObject);
         }
