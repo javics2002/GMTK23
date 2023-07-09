@@ -11,6 +11,7 @@ TagManager:
   - UIWin
   - UILose
   - UIScore
+  - UIRound
   layers:
   - Default
   - TransparentFX

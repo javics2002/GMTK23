@@ -8,12 +8,14 @@ public class EnemyShip : Ship
 	public float upSpeed = 5f;
 	public float time=1f;
 
+    ShipsMovement shipsMovement;
 
-    // Start is called before the first frame update
-    void Start()
+	// Start is called before the first frame update
+	void Start()
     {
-        currentTime = 0;
-    }
+        currentTime = shootColdown;
+		shipsMovement = GetComponentInParent<ShipsMovement>();
+	}
 
     // Update is called once per frame
     void Update()
@@ -23,8 +25,8 @@ public class EnemyShip : Ship
 
     private void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0) && GetComponentInParent<ShipsMovement>() != null 
-            && !GetComponentInParent<ShipsMovement>().isAnyShipAttacking())
+        if (Input.GetMouseButtonDown(0) && shipsMovement != null 
+            && !shipsMovement.isAnyShipAttacking())
         {
             if (currentTime > shootColdown)
             {
@@ -49,7 +51,8 @@ public class EnemyShip : Ship
             if (transform.parent == null)
             {
                 GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().enabled = true;
-            }
+                shipsMovement.shipExitAtackMode();
+			}
             Destroy(gameObject);
         }
     }

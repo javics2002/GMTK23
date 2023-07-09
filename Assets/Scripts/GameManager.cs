@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 
     public string username;
     public int score;
+    public int round;
 
     static GameManager instance;
 
@@ -30,6 +31,8 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
 
 		username = Environment.UserName;
+        score = 0;
+        round = 1;
 	}
 
     private void goMenu()
@@ -37,14 +40,18 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Menu");
     }
 
-    public void setInvadersWin()
+	private void nextRound() {
+		SceneManager.LoadScene("Spacee");
+	}
+
+	public void setInvadersWin()
     {
         GameObject obj = GameObject.FindGameObjectWithTag("UIWin");
 
         if (obj != null)
         {
             obj.GetComponent<TextMeshProUGUI>().enabled = true;
-            Invoke("goMenu", timeToChangeScene);
+            Invoke("nextRound", timeToChangeScene);
 
 
 			var enemyShips = GameObject.FindGameObjectsWithTag("Enemy");
@@ -52,9 +59,8 @@ public class GameManager : MonoBehaviour
             foreach (var enemy in enemyShips)
                 IncreaseScore(enemy.GetComponent<EnemyShip>().score);
 
-			SubmitScore();
-            score = 0;
-        }
+            round++;
+		}
     }
 
     public void setInvadersLose()
@@ -66,7 +72,10 @@ public class GameManager : MonoBehaviour
             obj.GetComponent<TextMeshProUGUI>().enabled = true;
             Invoke("goMenu", timeToChangeScene);
 
-        }
+			SubmitScore();
+			score = 0;
+            round = 1;
+		}
     }
 
     public static GameManager GetInstance() {

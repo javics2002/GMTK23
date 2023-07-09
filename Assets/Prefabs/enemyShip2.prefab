@@ -119,7 +119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera: {fileID: 9115746978898333917}
   maxAtackModeTime: 8
-  cameraSpeed: 100
+  cameraSpeed: 1000
   shootColdown: 1
   raiseSpeed: 5
   raiseTime: 2
