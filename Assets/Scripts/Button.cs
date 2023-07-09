@@ -71,10 +71,12 @@ public class Button : MonoBehaviour
 
 	public void LeaderBoard() {
 		Camera.main.GetComponent<Animator>().SetBool("Leaderboard", true);
+		GameObject.Find("Canvas").GetComponent<Animator>().SetBool("Open", true);
 	}
 
 	public void LeaderBoardExit() {
 		Camera.main.GetComponent<Animator>().SetBool("Leaderboard", false);
+		GameObject.Find("Canvas").GetComponent<Animator>().SetBool("Open", false);
 	}
 
 	public void Quit() {
