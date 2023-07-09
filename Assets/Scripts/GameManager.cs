@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
         {
             obj.GetComponent<TextMeshProUGUI>().enabled = true;
             Invoke("goMenu", timeToChangeScene);
-            //SubmitScore();
+            SubmitScore();
         }
     }
 

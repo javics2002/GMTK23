@@ -136,11 +136,11 @@ GameObject:
   - component: {fileID: 123649109}
   m_Layer: 5
   m_Name: Lose
-  m_TagString: Untagged
+  m_TagString: UILose
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &123649108
 RectTransform:
   m_ObjectHideFlags: 0
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 123649107}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -807,8 +807,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e8ba80b2c45baf43be8612c3ba0caea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  win: {fileID: 1163258439}
-  lose: {fileID: 123649109}
   timeToChangeScene: 3
   username: 
   score: 0
@@ -840,11 +838,11 @@ GameObject:
   - component: {fileID: 1163258439}
   m_Layer: 5
   m_Name: Win
-  m_TagString: Untagged
+  m_TagString: UIWin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1163258438
 RectTransform:
   m_ObjectHideFlags: 0
@@ -872,7 +870,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1163258437}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
