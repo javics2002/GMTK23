@@ -9,13 +9,14 @@ public class EnemyShip : Ship
 	public float time=1f;
 
     ShipsMovement shipsMovement;
+    AudioSource audioSource;
 
-	// Start is called before the first frame update
 	void Start()
     {
         currentTime = shootColdown;
 		shipsMovement = GetComponentInParent<ShipsMovement>();
-	}
+        audioSource = GetComponent<AudioSource>();  
+    }
 
     // Update is called once per frame
     void Update()
@@ -41,9 +42,9 @@ public class EnemyShip : Ship
         if (collider.CompareTag("LeftBorder") || collider.CompareTag("RigthBorder"))
         {
             if (collider.gameObject.tag == "LeftBorder")
-                GetComponentInParent<ShipsMovement>().goUp(ShipsMovement.borderTouched.left);
+                shipsMovement.goUp(ShipsMovement.borderTouched.left);
             if (collider.gameObject.tag == "RigthBorder")
-                GetComponentInParent<ShipsMovement>().goUp(ShipsMovement.borderTouched.right);
+                shipsMovement.goUp(ShipsMovement.borderTouched.right);
         }
 
         if (collider.GetComponent<Bullet>() != null && !collider.GetComponent<Bullet>().isEnemyBullet)
@@ -76,5 +77,6 @@ public class EnemyShip : Ship
     {
         bulletType.GetComponent<Bullet>().ChangeSpeed(bulletSpeed);
         Instantiate(bulletType, transform.GetChild(1).position, transform.GetChild(1).rotation);
+        audioSource.Play();
     }
 }
