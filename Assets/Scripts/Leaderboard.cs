@@ -3,10 +3,12 @@ using Dan.Main;
 using System.Security.Cryptography.X509Certificates;
 using System;
 using TMPro;
+using UnityEngine.UI;
 
 public class Leaderboard : MonoBehaviour
 {
     public GameObject entry;
+    public TMP_InputField playerName;
 
     string publicLeaderboardKey = "4f94383e7156f195db0b86d45e9b185084cbc46e46f58ca440c04a73c3093007";
 
@@ -24,11 +26,10 @@ public class Leaderboard : MonoBehaviour
             }
         });
 
+		playerName.SetTextWithoutNotify(Environment.UserName);
 	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	public void UpdateName() {
+		GameManager.GetInstance().username = playerName.text;
+	}
 }

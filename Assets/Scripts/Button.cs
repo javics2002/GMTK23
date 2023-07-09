@@ -50,6 +50,19 @@ public class Button : MonoBehaviour
 		}
 
 		callback.Invoke();
+
+		yield return new WaitForSeconds(2);
+
+		material.SetFloat("_Break", 0);
+		while (j < 1) {
+			j += speed * Time.deltaTime;
+
+			material.SetFloat("_Alpha", j);
+
+			yield return null;
+		}
+
+		clicked = false;
 	}
 
 	public void Play() {
@@ -58,6 +71,10 @@ public class Button : MonoBehaviour
 
 	public void LeaderBoard() {
 		Camera.main.GetComponent<Animator>().SetBool("Leaderboard", true);
+	}
+
+	public void LeaderBoardExit() {
+		Camera.main.GetComponent<Animator>().SetBool("Leaderboard", false);
 	}
 
 	public void Quit() {
