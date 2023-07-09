@@ -11,8 +11,11 @@ public class Button : MonoBehaviour
 	bool clicked = false;
 	public UnityEvent callback;
 
+	AudioSource clickSound;
+
 	private void Start() {
 		material = GetComponent<MeshRenderer>().material;
+		clickSound= GetComponent<AudioSource>();
 	}
 
 	private void OnMouseEnter() {
@@ -28,7 +31,9 @@ public class Button : MonoBehaviour
 			return;
 
 		clicked = true;
-		StartCoroutine(Click());
+        clickSound.Play();
+
+        StartCoroutine(Click());
 	}
 
 	IEnumerator Click() {
