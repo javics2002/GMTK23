@@ -16,15 +16,18 @@ public class LoneAtack : MonoBehaviour
     public Camera camera;
     public float maxAtackModeTime;
 
+    Material material;
+
     // Start is called before the first frame update
     void Start()
     {
-        timeToUnlock = Random.Range(5, 11);
+        timeToUnlock = Random.Range(5.0f, 11.0f);
         charge = false;
         atackMode = false;
         currentT = 0;
         timeInAtackMode = 0;
         originalParent = transform.parent;
+        material = GetComponentInChildren<MeshRenderer>().material;
     }
 
     // Update is called once per frame
@@ -53,6 +56,7 @@ public class LoneAtack : MonoBehaviour
             }
         }
 
+        material.SetInt("_Charged", charge ? 1 : 0);
     }
 
     private void OnMouseOver()
