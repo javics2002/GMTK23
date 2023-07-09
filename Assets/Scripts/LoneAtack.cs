@@ -26,6 +26,7 @@ public class LoneAtack : MonoBehaviour
     public float timeToResetShip;
 
     Material material;
+    Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +44,7 @@ public class LoneAtack : MonoBehaviour
         timeInAtackMode = 0;
 
         material = GetComponentInChildren<MeshRenderer>().material;
+        animator= GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -122,14 +124,18 @@ public class LoneAtack : MonoBehaviour
         camera.gameObject.SetActive(false);
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().enabled = true;
 
-        gameObject.SetActive(false);
+        animator.SetBool("visible", false);
+
+        //gameObject.SetActive(false);
 
         Invoke("ResetShipInArmy", timeToResetShip);
     }
 
     void ResetShipInArmy()
     {
-        gameObject.SetActive(true);
+        //gameObject.SetActive(true);
+        animator.SetBool("visible", true);
+
         transform.parent = originalParent;
         GetComponentInParent<ShipsMovement>().shipExitAtackMode();
         transform.position = GetComponentInParent<ShipsMovement>().getSavedPosOfShipAttacking();

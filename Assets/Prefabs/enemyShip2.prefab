@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -7427906919156404781}
   - component: {fileID: -154726025547896676}
   - component: {fileID: 4751836461427808397}
+  - component: {fileID: 9161163866581040723}
   m_Layer: 0
   m_Name: enemyShip2
   m_TagString: Enemy
@@ -125,6 +126,27 @@ MonoBehaviour:
   raiseTime: 2
   speed: 15
   timeToResetShip: 1
+--- !u!95 &9161163866581040723
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1853972517387079838}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bfb789520ca391b40bdc0e5582121416, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3185707465152325089
 GameObject:
   m_ObjectHideFlags: 0
