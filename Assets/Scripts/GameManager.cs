@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public int score;
     public int round;
 
+    public bool playing = false;
+
     static GameManager instance;
 
 	string publicLeaderboardKey = "4f94383e7156f195db0b86d45e9b185084cbc46e46f58ca440c04a73c3093007";
@@ -51,17 +53,23 @@ public class GameManager : MonoBehaviour
         if (obj != null)
         {
             obj.GetComponent<TextMeshProUGUI>().enabled = true;
-            Invoke("nextRound", timeToChangeScene);
-
-
-			var enemyShips = GameObject.FindGameObjectsWithTag("Enemy");
-
-            foreach (var enemy in enemyShips)
-                IncreaseScore(enemy.GetComponent<EnemyShip>().score);
-
+            
+            StartCoroutine(GetPoints());
+			
             round++;
 		}
     }
+
+    IEnumerator GetPoints() {
+		var enemyShips = GameObject.FindGameObjectsWithTag("Enemy");
+
+		foreach (var enemy in enemyShips) {
+			IncreaseScore(enemy.GetComponent<Ship>().score);
+            yield return new WaitForSeconds(0.05f);
+        }
+
+		Invoke("nextRound", timeToChangeScene);
+	}
 
     public void setInvadersLose()
     {

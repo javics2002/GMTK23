@@ -33,7 +33,8 @@ public class ShipsMovement : MonoBehaviour {
 	}
 
 	void Update() {
-		Movement();
+		if(GameManager.GetInstance().playing)
+			Movement();
 	}
 
 	void Movement() {

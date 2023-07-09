@@ -25,7 +25,7 @@ public class EnemyShip : Ship
 
     private void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0) && shipsMovement != null 
+        if (GameManager.GetInstance().playing && Input.GetMouseButtonDown(0) && shipsMovement != null 
             && !shipsMovement.isAnyShipAttacking())
         {
             if (currentTime > shootColdown)

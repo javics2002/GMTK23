@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 public class PlayerShip : Ship
 {
 	float currentTime;
-	EnemyShip target;
+	Ship target;
     ShipsMovement shipsMovement;
     public float offset;
     public float epsilon = .5f;
@@ -22,6 +22,8 @@ public class PlayerShip : Ship
     // Update is called once per frame
     void Update()
     {
+        if (!GameManager.GetInstance().playing)
+            return;
 
         if (!target)
         {
@@ -45,7 +47,7 @@ public class PlayerShip : Ship
     void FindTarget() {
         var enemyShips = GameObject.FindGameObjectsWithTag("Enemy");
 
-        target = enemyShips[Random.Range(0, enemyShips.Length)].GetComponent<EnemyShip>();
+        target = enemyShips[Random.Range(0, enemyShips.Length)].GetComponent<Ship>();
     }
 
     void Shoot() {
