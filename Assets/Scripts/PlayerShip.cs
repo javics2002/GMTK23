@@ -69,6 +69,7 @@ public class PlayerShip : Ship
     {
         if (collider.GetComponent<Bullet>() != null && collider.GetComponent<Bullet>().isEnemyBullet)
         {
+            GameManager.GetInstance().setInvadersWin();
             Destroy(gameObject);
         }
     }

@@ -807,9 +807,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e8ba80b2c45baf43be8612c3ba0caea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  win: {fileID: 0}
-  lose: {fileID: 0}
+  win: {fileID: 1163258439}
+  lose: {fileID: 123649109}
   timeToChangeScene: 3
+  username: 
+  score: 0
 --- !u!4 &1123120210
 Transform:
   m_ObjectHideFlags: 0
